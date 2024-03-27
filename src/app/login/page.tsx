@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -32,7 +33,7 @@ const Login = () => {
       if (res.ok) {
         setError(null);
         setLoading(false);
-        Router.push("/");
+        Router.push("/profile");
       }
     } catch (error: any) {
       setError(error.message);
@@ -48,35 +49,44 @@ const Login = () => {
   }, [formData]);
   return (
     <div>
-      <form onSubmit={handleSubmit} className="border p-5 my-10 mx-auto w-fit">
-        <div className="flex flex-col">
+      <form
+        onSubmit={handleSubmit}
+        className="border flex flex-col py-8 px-8 my-10 mx-auto bg-slate-100 w-fit border-2 border-slate-300"
+      >
+        <h1 className="text-center text-[20px] font-medium p-2">
+          Log In as User{" "}
+        </h1>
+        <div className="flex flex-col text-[18px]  my-2">
           <label htmlFor="email">email</label>
           <input
             id="email"
             type="text"
-            placeholder="email"
+            placeholder="example@gmail.com"
             onChange={handleChange}
-            className="p-2 border outline-none w-fit"
+            className="p-2  border-2 border-slate-300 focus:border-blue-600 outline-none w-[300px]"
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col text-[18px]  my-2">
           <label htmlFor="password">password</label>
           <input
             id="password"
             type="text"
             placeholder="password"
             onChange={handleChange}
-            className="p-2 border outline-none w-fit"
+            className="p-2  border-2 border-slate-300 focus:border-blue-600 outline-none w-[300px]"
           />
         </div>
         <button
-          className="w-full p-2 bg-slate-500 text-white m-2"
+          className=" bg-blue-600 text-white py-2 my-2 text-[18px] w-[300px]"
           type="submit"
           disabled={buttonIsDisable || loading}
         >
-          {loading ? "Loading" : "Log In"}
+          {loading ? "Loading" : "Sign In"}
         </button>
         {error && <p className="text-red-500 my-2">{error}</p>}
+        <Link className="text-blue-600 font-medium my-1" href={"/signin"}>
+          I Dont Have An Account?
+        </Link>
       </form>
     </div>
   );

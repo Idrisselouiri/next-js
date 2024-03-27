@@ -33,7 +33,7 @@ const Profile = () => {
     }
   };
   return (
-    <div>
+    <div className="flex justify-center items-center flex-col w-full h-screen border">
       <button className="p-2 bg-red-600 text-[18px] m-5" onClick={handleLogout}>
         Logout
       </button>
